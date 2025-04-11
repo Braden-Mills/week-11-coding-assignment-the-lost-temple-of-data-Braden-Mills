@@ -1,6 +1,6 @@
 '''
 Week 11 coding assignment: The Lost Temple of Data
-Test
+
 Submitted by Braden Mills
 '''
 import pandas as pd
@@ -32,42 +32,42 @@ def extract_secret_codes(journal_text):
  # --- Optional: Main execution block for your own testing ---
 if __name__ == '__main__':
     # Define file paths (adjust if your files are located elsewhere)
-    excel_file = 'artifacts.xlsx'
-    tsv_file = 'locations.tsv'
-    journal_file = 'journal.txt'
+    EXCEL_FILE = 'artifacts.xlsx'
+    TSV_FILE = 'locations.tsv'
+    JOURNAL_FILE = 'journal.txt'
 
-    print(f"--- Loading Artifact Data from {excel_file} ---")
+    print(f"--- Loading Artifact Data from {EXCEL_FILE} ---")
     try:
-        artifacts_df = load_artifact_data(excel_file)
+        artifacts_df = load_artifact_data(EXCEL_FILE)
         print("Successfully loaded DataFrame. First 5 rows:")
         print(artifacts_df.head())
         print("\nDataFrame Info:")
         artifacts_df.info()
     except FileNotFoundError:
-        print(f"Error: File not found at {excel_file}")
+        print(f"Error: File not found at {EXCEL_FILE}")
 
-    print(f"\n--- Loading Location Notes from {tsv_file} ---")
+    print(f"\n--- Loading Location Notes from {TSV_FILE} ---")
     try:
-        locations_df = load_location_notes(tsv_file)
+        locations_df = load_location_notes(TSV_FILE)
         print("Successfully loaded DataFrame. First 5 rows:")
         print(locations_df.head())
         print("\nDataFrame Info:")
         locations_df.info()
     except FileNotFoundError:
-        print(f"Error: File not found at {tsv_file}")
+        print(f"Error: File not found at {TSV_FILE}")
 
-    print(f"\n--- Processing Journal from {journal_file} ---")
+    print(f"\n--- Processing Journal from {JOURNAL_FILE} ---")
     try:
-        with open(journal_file, 'r', encoding='utf-8') as f:
+        with open(JOURNAL_FILE, 'r', encoding='utf-8') as f:
             journal_content = f.read()
 
         print("\nExtracting Dates...")
-        dates = extract_journal_dates(journal_content)
-        print(f"Found dates: {dates}")
+        journal_dates = extract_journal_dates(journal_content)
+        print(f"Found dates: {journal_dates}")
 
         print("\nExtracting Secret Codes...")
-        codes = extract_secret_codes(journal_content)
-        print(f"Found codes: {codes}")
+        journal_codes = extract_secret_codes(journal_content)
+        print(f"Found codes: {journal_codes}")
 
     except FileNotFoundError:
-        print(f"Error: File not found at {journal_file}")
+        print(f"Error: File not found at {JOURNAL_FILE}")
