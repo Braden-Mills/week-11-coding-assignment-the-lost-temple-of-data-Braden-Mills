@@ -3,6 +3,7 @@ Week 11 coding assignment: The Lost Temple of Data
 
 Submitted by Braden Mills
 '''
+from datetime import datetime
 import re
 import pandas as pd
 
@@ -19,13 +20,20 @@ def load_location_notes(tsv_filepath):
 
 def extract_journal_dates(journal_txt):
     """ Extracts all dates in MM/DD/YYYY format from the journal text. """
-    date_pattern = r"\b\d{2}/\d{2}/\d{4}\b"
+    date_pattern = r"\d{2}/\d{2}/\d{4}"
     dates = re.findall(date_pattern, journal_txt)
-    return dates
+    valid_dates = []
+    for date_str in dates:
+        try:
+            datetime.strptime(date_str, "%m/%d/%Y")
+            valid_dates.append(date_str)
+        except ValueError:
+            continue
+    return valid_dates
 
 def extract_secret_codes(journal_text):
     """  Extracts all secret codes in AZMAR-XXX format (XXX are digits) from the journal text. """
-    code_pattern = r"\bAZMAR-\d{3}\b"
+    code_pattern = r"AZMAR-\d{3}"
     codes = re.findall(code_pattern, journal_text)
     return codes
 
