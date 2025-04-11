@@ -3,8 +3,8 @@ Week 11 coding assignment: The Lost Temple of Data
 
 Submitted by Braden Mills
 '''
-import pandas as pd
 import re
+import pandas as pd
 
 def load_artifact_data(excel_filepath):
     """ Reads artifact data from a specific sheet ('Main Chamber') in an Excel file,
